@@ -3,16 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendora Frontend</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <title>Vendora</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        
+        
+        </head>
 <body>
-    <h1>Welcome to Vendora</h1>
-    <p>This is a simple frontend for the Vendora app.</p>
-<a href="products.html">
-  <button>Go to Products</button>
-</a>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="script.js"></script>
+
+    <h1 style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+        Vendora - All In One
+    </h1>
+
+    
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">Vendora</a>
+            <input type="search" class="input-search" placeholder="Search Products">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-primary position-relative" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="View Shopping Cart">
+                        <i class="fas fa-shopping-bag"></i> <span class="cart-counter">0</span>
+                    </button>
+                    <button class="btn theme-toggle-btn" id="theme-toggle-btn" type="button" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i> 
+                        <i class="fas fa-sun"></i>  
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1 id="hero-heading" data-animation="text-reveal" style="max-width: 100%">Beyond Imagination</h1>
+            <p id="hero-subheading" data-animation="text-reveal" data-delay="0.3" style="width: auto; max-width: 600px; margin-left: auto; margin-right: auto;">All in One.</p>
+            <a href="#products" class="btn btn-cta">Marketplace<i class="fas fa-long-arrow-alt-right ms-2"></i></a>
+            <br>
+            <a href="#products" class="btn btn-cta" style="
+            margin-top:15px
+            ">Vendors<i class="fas fa-long-arrow-alt-right ms-2"></i></a>
+        </div>
+    </section>
+
+    
+    <div class="shape-divider" style="background-color: var(--gray-100);"> <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" style="opacity: 0.7; fill: var(--bs-body-bg);"> <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+         </svg>
+         <svg data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" style="opacity: 1; fill: var(--bs-body-bg);"> <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.3-37.5C438.64,32.43,512.34,53.67,583.82,73.44c71.47,19.79,148.86,21.3,218.11,15.42,69.25-5.88,138.46-24.36,209.42-37.6C1079.72,31.23,1139.69,37.39,1200,46.29V0Z"></path>
+         </svg>
+    </div>
+
+    
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title animated-item slide-up" data-animation-type="slide-up">Get Digital Products</h2>
+            <p class="section-subtitle animated-item slide-up" data-delay="0.15">Get Products Like:</p>
+            <br>
+            <p>Software & Applications</p>
+            <p>Digital Media</p>
+            <p>Design Assets</p>
+            <p>Developer Tools</p>
+            <p>Online Learning & Eductional Materials</p>
+            <p>Photography & Media</p>
+            <p>Printables and Stationary</p>
+            <p>Business & Marketing Assets</p>
+            <p>NFT's & Digital Collectibles</p>
+            <p>Subscriptions & Licenses</p>
+            <p>Virtual Goods in Gaming</p>
+            <p>Web & Domain Products</p>
+            <p>Financial & Cryptocurrency Products</p>
+            </div>
+    </section>
+    <section class="products-section" id="products"
+    style="
+    border-top:1px solid
+    ">
+        <div class="container">
+            <h2 class="section-title animated-item slide-up" data-animation-type="slide-up">Get Physical Products</h2>
+            <p class="section-subtitle animated-item slide-up" data-delay="0.15">Get Products Like:</p>
+            <br>
+            <p>Clothes</p>
+            <p>Shoes</p>
+            <p>Beauty & Health Products</p>
+            <p>Electronics</p>
+            <p>Watches</p>
+            <p>Laptops</p>
+            <p>Phones</p>
+            <p>Furnitures</p>
+            <p>Home Appliances</p>
+            <p>Television</p>
+            <p>Gaming</p>
+            <p>Automotives</p>
+            <p>Books</p>
+            <p>Sport & Outdoors</p>
+            <p>Baby Products</p>
+            <p>Kitchen</p>
+            </div>
+            
+    </section>
+            
+            <div class="section benefits-section">
+  <h2>Why Choose Vendora?</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <h3>All-in-One Marketplace</h3>
+      <p>Sell both digital and physical products in one seamless platform.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Earn as a Vendor</h3>
+      <p>Set your price, upload your digital products, and start earning today.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Earn as an Affiliate</h3>
+      <p>Help boost Vendora's marketplace and earn money</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Smart AI Recommendations</h3>
+      <p>Discover products you’ll love with AI-powered suggestions.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Secure Payments</h3>
+      <p>We support Paystack, Stripe, Crypto & Gift Cards – always safe and easy.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Instant Digital Delivery</h3>
+      <p>Buyers get their files instantly. No waiting, no hassle.</p>
+    </div>
+    <div class="benefit-card">
+      <h3>Trusted Sellers</h3>
+      <p>Top-rated sellers, quality checked products, and a friendly marketplace vibe.</p>
+    </div>
+  </div>
+</div>
+    
+        <section id="about" class="py-5">
+        <div class="container text-center col-lg-8">
+            <h2 class="section-title animated-item slide-up">Create an Account</h2>
+            <p class="section-subtitle animated-item slide-up" data-delay="0.15">Create an Account to unlock all Vendora as to Offer</p>
+            <button class="btn btn-outline-primary rounded-pill px-4 py-2 animated-item zoom-in" data-delay="0.3"
+            style="
+            margin-top:15px
+            ">Sign-in Securely</button>
+        </div>
+    </section>
+
+    
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6 footer-section animated-item slide-up">
+                    <h5 class="mb-4">Explore</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Join Affilate</a></li>
+                        <li><a href="#">Be a Vendor</a></li>
+                        <li><a href="#">Log-in</a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+                </div>
+                 <div class="col-lg-4 col-md-6 footer-section animated-item slide-up" data-delay="0.1">
+                    <h5 class="mb-4">Get In Touch</h5>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt fa-fw"></i>123 Future Street, Tech Valley, CA 90210</p>
+                        <p><i class="fas fa-envelope fa-fw"></i>contact@vendora.com</p>
+                        <p><i class="fas fa-mobile-alt fa-fw"></i>+1 (555) NEXT-GEN</p>
+                    </div>
+                    <div class="social-icons mt-4">
+                        <a href="#" aria-label="Visit our Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Visit our Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Visit our Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Visit our LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                 <div class="col-lg-5 col-md-12 footer-section animated-item slide-up" data-delay="0.2">
+                    <h5 class="mb-4">Stay Updated</h5>
+                    <p>Subscribe for exclusive deals, launch news, and tech insights.</p>
+                    <form class="newsletter-form mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control form-control-lg" placeholder="your.email@example.com" aria-label="Email Address for Newsletter" required>
+                            <button class="btn btn-primary" type="button" id="newsletter-button">
+                                <span class="d-none d-sm-inline">Subscribe</span> <i class="fas fa-paper-plane ms-sm-1"></i>
+                            </button>
+                        </div>
+                        <small class="text-muted opacity-75 d-block mt-2">Your privacy is paramount.</small>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p class="mb-1">
+                    <a href="#" class="me-3">Privacy Policy</a> |
+                    <a href="#" class="mx-3">Terms of Service</a> |
+                    <a href="#" class="ms-3">Accessibility</a>
+                </p>
+                <p class="mb-0">
+                    &copy; <span id="currentYear">2025</span> NextGen Mobiles. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel"><i class="fas fa-shopping-bag me-2"></i> Your Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close Cart Modal"></button> </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                        
+                        <div class="text-center py-5" id="emptyCart">
+                            <i class="fas fa-shopping-bag fa-4x text-muted mb-3"></i>
+                            <h4 class="text-muted">Your bag is empty</h4>
+                            <p class="text-muted">Looks like you haven't added anything yet.</p>
+                            <button type="button" class="btn btn-primary mt-3 px-4" data-bs-dismiss="modal">Start Shopping</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="cartTotals" class="flex-grow-1 me-3">
+                        <div class="d-flex justify-content-between"><span>Subtotal:</span><span id="cartSubtotal">$0.00</span></div>
+                        <div class="d-flex justify-content-between"><span class="text-muted">Tax (10%):</span><span class="text-muted" id="cartTax">$0.00</span></div>
+                        <hr class="my-2">
+                        <div class="d-flex justify-content-between h5 mb-0"><strong>Total:</strong><strong id="cartTotal">$0.00</strong></div>
+                    </div>
+                    <button class="btn btn-success btn-lg" id="checkoutBtn" onclick='javascript:{
+                        swal({
+                            title: "Payment Successful",
+                            text: "Thanks for your simulated payment! 😁",
+                            icon: "success",
+                            button: "Ok",
+                        });
+                    }'>
+                        <i class="fas fa-lock me-2"></i> Secure Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewName" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content overflow-hidden">
+                 <button type="button" class="btn-close position-absolute top-0 end-0 p-3" style="z-index: 10;" data-bs-dismiss="modal" aria-label="Close Quick View"></button>
+                <div class="modal-body p-0">
+                    <div class="quick-view-content row g-0">
+                        <div class="quick-view-image col-lg-6">
+                             <img src="" alt="Product Image" id="quickViewImage" class="img-fluid">
+                        </div>
+                        <div class="quick-view-details col-lg-6">
+                             <h3 id="quickViewName" class="modal-title">Product Name</h3>
+                            <p class="text-muted"><small>SKU: <span id="quickViewId">N/A</span></small></p>
+                            <ul class="quick-view-features list-unstyled" id="quickViewFeatures">
+                                
+                            </ul>
+                            <div class="quick-view-price-container">
+                                <div class="quick-view-price" id="quickViewPrice">$0.00</div>
+                                <div class="quick-view-original-price" id="quickViewOriginalPrice" style="display: none;">$0.00</div>
+                            </div>
+                            <div class="quick-view-actions">
+                                <button class="btn btn-primary btn-lg quick-view-add-to-cart w-100" id="quickViewAddToCartBtn">
+                                    <i class="fas fa-cart-plus me-2"></i> Add to Cart
+                                </button>
+                                <button class="btn btn-outline-secondary w-100 mt-2" data-bs-dismiss="modal">Continue Shopping</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
